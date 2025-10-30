@@ -58,12 +58,22 @@ jobs:
             fs.writeFileSync(path, next);
           })().catch(e => { console.error(e.stack || e); process.exit(1); });
 
-      - name: Commit & Push as me
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+      - name: Setup SSH
         run: |
-          git config user.name "${{ secrets.USER_NAME }}"
-          git config user.email "${{ secrets.USER_EMAIL }}"   # 프로필에 등록된 이메일과 일치해야 잔디 반영
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Commit & Push via SSH (as me)
+        env:
+          USER_NAME: ${{ secrets.USER_NAME }}
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+        run: |
+          git config user.name  "${USER_NAME}"
+          git config user.email "${USER_EMAIL}"
+          
           git add README.md
-          git commit -m "chore: update velog section [skip ci]" || echo "no changes"
-          git push https://x-access-token:${GH_PAT}@github.com/${GITHUB_REPOSITORY}.git HEAD:main
+          git commit -m "chore: update Velog section" || echo "no changes"
+          
+          git push git@github.com:${GITHUB_REPOSITORY}.git HEAD:main
