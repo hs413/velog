@@ -1,0 +1,69 @@
+name: Sync Velog to README
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"  # 6시간마다
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install deps
+        run: npm i rss-parser
+
+      - name: Generate latest posts section
+        env:
+          VELOG_ID: ${{ secrets.VELOG_ID }}
+        run: |
+          node - <<'NODE'
+          const Parser = require('rss-parser');
+          const fs = require('fs');
+
+          const id = process.env.VELOG_ID;
+          if (!id) throw new Error('VELOG_ID is empty');
+          const url = `https://v2.velog.io/rss/${id}`;
+
+          (async () => {
+            const parser = new Parser();
+            const feed = await parser.parseURL(url);
+            const items = (feed.items || []).slice(0, 5);
+
+            const lines = ['## 📝 Latest from Velog', ''];
+            for (const it of items) {
+              const d = it.pubDate ? new Date(it.pubDate) : new Date();
+              const date = isNaN(d) ? '' : d.toISOString().slice(0, 10);
+              lines.push(`- [${it.title}](${it.link})  · ${date}`);
+            }
+            lines.push('');
+
+            const start = '<!-- VELOG:START -->';
+            const end   = '<!-- VELOG:END -->';
+            const block = `${start}\n${lines.join('\n')}\n${end}`;
+
+            const path = 'README.md';
+            const cur = fs.existsSync(path) ? fs.readFileSync(path, 'utf8') : '';
+            const next = (cur.includes(start) && cur.includes(end))
+              ? cur.replace(new RegExp(`${start}[\\s\\S]*?${end}`, 'm'), block)
+              : (cur || '') + (cur.endsWith('\n') ? '' : '\n') + block + '\n';
+
+            fs.writeFileSync(path, next);
+          })().catch(e => { console.error(e.stack || e); process.exit(1); });
+
+      - name: Commit & Push as me
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          git config user.name "${{ secrets.USER_NAME }}"
+          git config user.email "${{ secrets.USER_EMAIL }}"   # 프로필에 등록된 이메일과 일치해야 잔디 반영
+          git add README.md
+          git commit -m "chore: update velog section [skip ci]" || echo "no changes"
+          git push https://x-access-token:${GH_PAT}@github.com/${GITHUB_REPOSITORY}.git HEAD:main
