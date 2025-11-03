@@ -1,7 +1,10 @@
 <!-- VELOG:START -->
 ## 📝 Latest from Velog
 
-- [액션과 계산, 데이터 구분하기](https://velog.io/@rtg2541/fp2)  · 2025-11-02
-- [함수형 프로그래밍](https://velog.io/@rtg2541/fp)  · 2025-10-30
+- [MySQL 옵티마이저 개요 및 기본 데이터 처리](https://velog.io/@rtg2541/mysql6)  · 2025-11-03
+- [MySQL 인덱스 Part 2](https://velog.io/@rtg2541/mysql5)  · 2025-11-03
+- [MySQL 인덱스 Part 1](https://velog.io/@rtg2541/mysql4)  · 2025-11-03
+- [프로세스 동기화 기법](https://velog.io/@rtg2541/os1)  · 2025-11-02
+- [잠금과 트랜잰션 격리 수준](https://velog.io/@rtg2541/mysql3)  · 2025-11-02
 
 <!-- VELOG:END -->
