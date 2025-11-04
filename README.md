@@ -1,10 +1,10 @@
 <!-- VELOG:START -->
 ## 📝 Latest from Velog
 
-- [MySQL 옵티마이저 개요 및 기본 데이터 처리](https://velog.io/@rtg2541/mysql6)  · 2025-11-03
-- [MySQL 인덱스 Part 2](https://velog.io/@rtg2541/mysql5)  · 2025-11-03
-- [MySQL 인덱스 Part 1](https://velog.io/@rtg2541/mysql4)  · 2025-11-03
-- [프로세스 동기화 기법](https://velog.io/@rtg2541/os1)  · 2025-11-02
-- [잠금과 트랜잰션 격리 수준](https://velog.io/@rtg2541/mysql3)  · 2025-11-02
+- [JVM & JIT 컴파일러](https://velog.io/@rtg2541/java2)  · 2025-11-04
+- [Java 자료형 & 메모리구조 & GC](https://velog.io/@rtg2541/java1)  · 2025-11-04
+- [HTTP의 진화(버전별 특징)](https://velog.io/@rtg2541/http1)  · 2025-11-04
+- [MySQL 인덱스 part3](https://velog.io/@rtg2541/mysql8)  · 2025-11-04
+- [MySQL 기본 데이터 처리 part 2](https://velog.io/@rtg2541/mysql7)  · 2025-11-04
 
 <!-- VELOG:END -->
