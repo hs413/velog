@@ -2,7 +2,7 @@ name: Sync Velog to README
 
 on:
   schedule:
-    - cron: "0 23 * * *"  # 오후 11시마다
+    - cron: "0 14 * * *"  # 오후 11시마다
   workflow_dispatch:
 
 jobs:
