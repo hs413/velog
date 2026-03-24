@@ -1,10 +1,10 @@
 <!-- VELOG:START -->
 ## 📝 Latest from Velog
 
-- [데이터 복제](https://velog.io/@rtg2541/d3)  · 2026-02-18
-- [트랜잭션 & 데이터웨어 하우징](https://velog.io/@rtg2541/d2)  · 2026-02-09
-- [저장소와 탐색](https://velog.io/@rtg2541/d1-zi3ieha1)  · 2026-02-02
-- [데이터 모델과 질의](https://velog.io/@rtg2541/d1)  · 2026-01-27
-- [메모리 할당2](https://velog.io/@rtg2541/os12)  · 2026-01-11
+- [MyBatis Type Handler](https://velog.io/@rtg2541/MyBatis-Type-Handler)  · 2026-03-23
+- [객체 생성 패턴 및 공변성](https://velog.io/@rtg2541/java4)  · 2025-11-23
+- [스트림API](https://velog.io/@rtg2541/java3)  · 2025-11-22
+- [Spring 개요](https://velog.io/@rtg2541/Spring-%EA%B0%9C%EC%9A%94)  · 2025-11-06
+- [JVM & JIT 컴파일러](https://velog.io/@rtg2541/java2)  · 2025-11-04
 
 <!-- VELOG:END -->
